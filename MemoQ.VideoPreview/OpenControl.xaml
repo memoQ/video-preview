@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="MemoQ.VideoPreview.OpenControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MemoQ.VideoPreview"
+             mc:Ignorable="d" 
+             Height="300" Width="500" FontFamily="Segoe UI" FontSize="13">
+    <!-- Resources. -->
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <!-- Included dictionaries. -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Border Name="ImageError" Width="67" Height="67" BorderThickness="0" Background="Transparent" Margin="0, 0, 0, 27">
+            <Viewbox Stretch="Uniform">
+                <Canvas Name="svg3757" Width="136" Height="136">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="0" Y="0"/>
+                    </Canvas.RenderTransform>
+                    <Canvas.Resources/>
+                    <Path Name="path3751" Fill="#FFEF3F3F">
+                        <Path.Data>
+                            <PathGeometry Figures="M63.3345 66.5192H3.33448C2.17781 66.5192 1.10781 65.9192 0.497811 64.9392C-0.112189 63.9525 -0.162189 62.7292 0.351144 61.6925L30.3511 1.6925C31.4811 -0.564166 35.1845 -0.564166 36.3145 1.6925L66.3145 61.6925C66.8278 62.7292 66.7778 63.9492 66.1678 64.9392C65.5611 65.9225 64.4911 66.5192 63.3345 66.5192ZM8.72781 59.8525H57.9411L33.3345 10.6425L8.72781 59.8525Z" FillRule="NonZero"/>
+                        </Path.Data>
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="2" ScaleY="2"/>
+                                <TranslateTransform X="1.33093" Y="1.62836"/>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path Name="path3753" Fill="#FFEF3F3F">
+                        <Path.Data>
+                            <PathGeometry Figures="M6.66667 0H0V20H6.66667V0Z" FillRule="NonZero"/>
+                        </Path.Data>
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="2" ScaleY="2"/>
+                                <TranslateTransform X="61.3334" Y="54.6667"/>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path Name="path3755" Fill="#FFEF3F3F">
+                        <Path.Data>
+                            <PathGeometry Figures="M4.16667 8.33333C6.46785 8.33333 8.33333 6.46785 8.33333 4.16667C8.33333 1.86548 6.46785 0 4.16667 0C1.86548 0 0 1.86548 0 4.16667C0 6.46785 1.86548 8.33333 4.16667 8.33333Z" FillRule="NonZero"/>
+                        </Path.Data>
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="2" ScaleY="2"/>
+                                <TranslateTransform X="59.6666" Y="99.6667"/>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                </Canvas>
+            </Viewbox>
+        </Border>
+        <TextBlock Text="We cannot open this video. Please select another one." 
+                   Margin="0, 0, 0, 16" TextAlignment="Center" FontWeight="SemiBold" LineHeight="15" TextWrapping="Wrap"/>
+        <Button Name="btnBrowse" Content="Browse..." Margin="0" Padding="3" Foreground="#FFFFFF" Background="#3B3751" 
+                FontWeight="SemiBold" FontSize="15" HorizontalContentAlignment="Center" Height="32" Width="105" Click="btnBrowse_Click"/>
+    </StackPanel>
+</UserControl>

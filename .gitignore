@@ -1,0 +1,4 @@
+packages
+bin
+/.vs/*
+/MemoQ.VideoPreview/obj/*

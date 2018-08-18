@@ -1,0 +1,104 @@
+﻿<Window x:Class="MemoQ.VideoPreview.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MemoQ.VideoPreview"
+        xmlns:vlc="clr-namespace:Vlc.DotNet.Wpf;assembly=Vlc.DotNet.Wpf"
+        mc:Ignorable="d"
+        Title="memoQ Video Preview Tool" Height="520" Width="654" MinWidth="506" MinHeight="404"
+        Icon="VideoPreviewTool.ico" Closing="Window_Closing" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged">
+    <!-- Resources. -->
+    <Window.Resources>
+        <ResourceDictionary>
+            <!-- Included dictionaries. -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <DockPanel>
+        <local:ConnectControl x:Name="connectControl" DataContext="{Binding ConnectViewModel}" DockPanel.Dock="Top"
+                              HorizontalAlignment="Center" HorizontalContentAlignment="Stretch"
+                              Visibility="{Binding IsConnected, Converter={StaticResource InverseVisibilityOfBoolean}}" />
+        <local:OpenControl x:Name="openControl" DataContext="{Binding VideoViewModel}" DockPanel.Dock="Top" 
+                           VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                           Visibility="{Binding CannotOpen, Converter={StaticResource VisibilityOfBoolean}}" />
+        <DockPanel Name="videoPlayerPanel" DockPanel.Dock="Top">
+            <DockPanel.Visibility>
+                <MultiBinding Converter="{StaticResource VisibilityOfMultipleVisibilities}">
+                    <Binding Path="ConnectViewModel.IsConnected" Converter="{StaticResource VisibilityOfBoolean}" />
+                    <Binding Path="VideoViewModel.CannotOpen" Converter="{StaticResource InverseVisibilityOfBoolean}" />
+                </MultiBinding>
+            </DockPanel.Visibility>
+            <StatusBar Name="statusBar" Height="26" BorderThickness="0, 1, 0, 0" FontSize="11"
+                       BorderBrush="#E4E4F5" Background="#FAFAFD" DockPanel.Dock="Bottom">
+                <StatusBarItem>
+                    <TextBlock Name="txtWpm" Text="Words per minute:" Foreground="#3B3751" MinWidth="140"/>
+                </StatusBarItem>
+                <StatusBarItem>
+                    <TextBlock Name="txtCps" Text="Characters per second:" Foreground="#3B3751" MinWidth="150"/>
+                </StatusBarItem>
+                <StatusBarItem>
+                    <TextBlock Name="txtLineLength" Text="Line length:" Foreground="#3B3751" MinWidth="100"/>
+                </StatusBarItem>
+                <StatusBarItem HorizontalAlignment="Right" Margin="0, 0, 5, 0">
+                    <TextBlock>
+                        <Hyperlink TextDecorations="{x:Null}" Foreground="#0063B1" RequestNavigate="Hyperlink_RequestNavigate" 
+                                   NavigateUri="https://www.surveymonkey.com/r/B3BKNKL">Send feedback</Hyperlink>
+                    </TextBlock>
+                </StatusBarItem>
+            </StatusBar>
+            <Grid Name="mainGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <DockPanel Name="myVlcControlPanel"  Grid.Row="0" Grid.ColumnSpan="3" Background="#3B3751"
+                           Visibility="{Binding VideoViewModel.IsLoading, Converter={StaticResource InverseVisibilityOfBoolean}}">
+                    <vlc:VlcControl Name="myVlcControl" />
+                </DockPanel>
+                <Label Content="Loading video..." Grid.Row="0" Grid.ColumnSpan="3" FontSize="26" Foreground="#FAFAFD" Background="#3B3751"
+                       HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                       Visibility="{Binding VideoViewModel.IsLoading, Converter={StaticResource VisibilityOfBoolean}}"/>
+                <Grid Grid.Row="1" Grid.ColumnSpan="3" Margin="0, 5, 0, 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="120"/>
+                    </Grid.ColumnDefinitions>
+                    <Slider Name="sliderVideo" ValueChanged="sliderVideo_ValueChanged"
+                            Grid.Column="0" Margin="10, 5, 0, 5" Style="{StaticResource VideoSlider}" />
+                    <TextBlock Name="txtTimeFrame" Grid.Column="1" Margin="5, 5, 10, 5" FontSize="13" 
+                               HorizontalAlignment="Right" Text="{Binding VideoViewModel.TimeFrame}"/>
+                </Grid>
+                <StackPanel Name="volumePanel" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Orientation="Horizontal">
+                    <ToggleButton Name="btnVolume" Style="{StaticResource ButtonVolume}" Margin="11, 0, 5, 0" 
+                                  IsChecked="{Binding VideoViewModel.IsMute}" Click="btnVolume_Click">
+                    </ToggleButton>
+                    <Slider Name="sliderVolume" ValueChanged="sliderVolume_ValueChanged" 
+                            Width="90" VerticalAlignment="Center" Style="{StaticResource VolumeSlider}" IsMoveToPointEnabled="True"
+                            Maximum="100" LargeChange="10" SmallChange="1"/>
+                </StackPanel>
+                <StackPanel Name="controlVideoPanel" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Orientation="Horizontal">
+                    <ToggleButton Name="btnSelection" Style="{StaticResource ButtonSelection}" IsChecked="{Binding VideoViewModel.IsSelectionMode}"
+                                  Click="btnSelection_Click" />
+                    <ToggleButton Name="btnPlayOrPause" Style="{StaticResource ButtonPlay}" IsChecked="{Binding VideoViewModel.IsPlaying}"
+                                  IsEnabled="{Binding VideoViewModel.Document.Name, TargetNullValue=False}" Click="btnPlayOrPause_Click"/>
+                    <ToggleButton Name="btnLoop" Style="{StaticResource ButtonLoop}" IsChecked="{Binding VideoViewModel.LoopSelection}"/>
+                </StackPanel>
+                <StackPanel Name="settingsPanel" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <ToggleButton Name="btnFullScreen" Style="{StaticResource ButtonFullScreen}" Click="btnFullScreen_Click"/>
+                    <Button Name="btnOpen" Style="{StaticResource ButtonOpen}" Click="btnOpen_Click" 
+                            IsEnabled="{Binding VideoViewModel.Document.Name, TargetNullValue=False}" />
+                    <Button Name="btnSettings" Style="{StaticResource ButtonSettings}" Click="btnSettings_Click"/>
+                </StackPanel>
+            </Grid>
+        </DockPanel>
+    </DockPanel>
+</Window>

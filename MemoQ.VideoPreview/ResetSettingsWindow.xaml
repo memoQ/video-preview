@@ -1,0 +1,41 @@
+﻿<Window x:Class="MemoQ.VideoPreview.ResetSettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MemoQ.VideoPreview"
+        mc:Ignorable="d"
+        Title="Reset settings" Height="290" Width="574"
+        FontFamily="Segoe UI" FontSize="14" TextElement.Foreground="#333333" ResizeMode="NoResize">
+    <!-- Resources. -->
+    <Window.Resources>
+        <ResourceDictionary>
+            <!-- Included dictionaries. -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Margin="0, 20, 20, 20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Image Grid.Column="0" Grid.Row="0" Source="Images/Warning.png" Stretch="Uniform"/>
+        <TextBlock Grid.Column="1" Grid.Row="0" FontSize="20" VerticalAlignment="Center" 
+                   Text="Are you sure you want to reset settings?"/>
+        <TextBlock Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Margin="0, 0, 40, 0"
+                   Text="If you do that, you do not only revert the above settings to their default values, but also delete the mappings between memoQ documents and media files. You may have to tell memoQ again which media file belongs to the document you open."/>
+        <DockPanel Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom">
+            <Button DockPanel.Dock="Right" Name="btnCancel" Content="Cancel" IsCancel="True" Margin="10, 0, 0, 0" HorizontalAlignment="Right"
+                    Style="{StaticResource TextButton}"/>
+            <Button DockPanel.Dock="Right" Name="btnReset" Content="Reset" Click="btnReset_Click" Margin="10, 0, 0, 0" HorizontalAlignment="Right"
+                    Style="{StaticResource TextButton}"/>
+        </DockPanel>
+    </Grid>
+</Window>

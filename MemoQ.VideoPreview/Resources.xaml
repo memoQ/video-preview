@@ -1,0 +1,657 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:MemoQ.VideoPreview">
+    <!-- Images -->
+    <Border x:Key="ImageVolume" BorderThickness="0" Background="Transparent">
+        <Viewbox Stretch="Uniform">
+            <Canvas Name="svg3969" Width="18" Height="32">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0"/>
+                </Canvas.RenderTransform>
+                <Canvas.Resources/>
+                <Path Name="path3967" Fill="#FF3B3751">
+                    <Path.Data>
+                        <PathGeometry Figures="M7.81917 0.0631207C7.5075 -0.0652126 7.14917 0.00562069 6.91083 0.243954L3.33333 4.16562H0.833333C0.375 4.16562 0 4.54145 0 4.99895V9.99895C0 10.4573 0.375 10.8323 0.833333 10.8323H3.33333L6.91083 14.7556C7.14917 14.994 7.5075 15.0648 7.81917 14.9365C8.13083 14.8073 8.33333 14.5031 8.33333 14.1656V0.832287C8.33333 0.496454 8.13083 0.190621 7.81917 0.0631207Z" FillRule="NonZero"/>
+                    </Path.Data>
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            <TranslateTransform X="0.333374" Y="1.00543"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Canvas>
+        </Viewbox>
+    </Border>
+
+    <Border x:Key="ImageMute" BorderThickness="0" Background="Transparent">
+        <Viewbox Stretch="Uniform">
+            <Canvas Name="svg3841" Width="34" Height="34">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0"/>
+                </Canvas.RenderTransform>
+                <Canvas.Resources/>
+                <Path Name="path3837" Fill="#FF89888F">
+                    <Path.Data>
+                        <PathGeometry Figures="M14.1667 -1.58946e-08L-9.3778e-08 14.1667L1.17833 15.345L5.3175 11.2058L8.33333 14.5117C8.57167 14.7508 8.93 14.8217 9.24167 14.6917C9.55333 14.5633 9.75583 14.2592 9.75583 13.9225V6.7675L15.345 1.17833L14.1667 -1.58946e-08Z" FillRule="NonZero"/>
+                    </Path.Data>
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            <TranslateTransform X="1.44667" Y="1.45"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path Name="path3839" Fill="#FF89888F">
+                    <Path.Data>
+                        <PathGeometry Figures="M8.33333 2.29867V0.833674C8.33333 0.497008 8.13083 0.192008 7.81917 0.0636745C7.5075 -0.0654922 7.14917 0.00534115 6.91083 0.244508L3.33333 4.16701H0.833333C0.375 4.16701 -7.94729e-08 4.54201 -7.94729e-08 5.00034V10.0003C-7.94729e-08 10.177 0.0683333 10.3328 0.163333 10.4678L8.33333 2.29867Z" FillRule="NonZero"/>
+                    </Path.Data>
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            <TranslateTransform X="4.29167" Y="0.960983"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Canvas>
+        </Viewbox>
+    </Border>
+
+    <Border x:Key="ImageSelection" BorderThickness="0" Background="Transparent">
+        <Viewbox Stretch="Uniform">
+            <Canvas Name="svg3909" Width="24" Height="32">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0"/>
+                </Canvas.RenderTransform>
+                <Canvas.Resources/>
+                <Path Name="path3905" Fill="#FF3B3751">
+                    <Path.Data>
+                        <PathGeometry Figures="M0 1.66667V13.3333C0 14.2517 0.7475 15 1.66667 15H2.5V13.3333H1.66667V1.66667H2.5V-6.03994e-08H1.66667C0.7475 -6.03994e-08 0 0.7475 0 1.66667Z" FillRule="NonZero"/>
+                    </Path.Data>
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            <TranslateTransform X="0.333313" Y="0.995003"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path Name="path3907" Fill="#FF3B3751">
+                    <Path.Data>
+                        <PathGeometry Figures="M0.833333 -6.03994e-08H0V1.66667H0.833333V13.3333H0V15H0.833333C1.75333 15 2.5 14.2517 2.5 13.3333V1.66667C2.5 0.7475 1.75333 -6.03994e-08 0.833333 -6.03994e-08Z" FillRule="NonZero"/>
+                    </Path.Data>
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            <TranslateTransform X="18.6667" Y="0.995003"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Canvas>
+        </Viewbox>
+    </Border>
+
+    <Border x:Key="ImagePlay" BorderThickness="0" Background="Transparent">
+        <Viewbox Stretch="Uniform">
+            <Canvas Name="svg3885" Width="60" Height="74">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0"/>
+                </Canvas.RenderTransform>
+                <Canvas.Resources/>
+                <Path Name="path3883" Fill="#FF3B3751">
+                    <Path.Data>
+                        <PathGeometry Figures="M0 4.19617e-08V36L30 18L0 4.19617e-08Z" FillRule="NonZero"/>
+                    </Path.Data>
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            <TranslateTransform X="0.00012207" Y="0.0119934"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Canvas>
+        </Viewbox>
+    </Border>
+
+    <Border x:Key="ImagePause" BorderThickness="0" Background="Transparent">
+        <Viewbox Stretch="Uniform">
+            <Canvas Name="svg36" Width="48" Height="66">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0"/>
+                </Canvas.RenderTransform>
+                <Canvas.Resources/>
+                <Path Name="path32" Fill="#FF3B3751">
+                    <Path.Data>
+                        <PathGeometry Figures="M7.38462 3.84649e-08H1.84615C0.830769 3.84649e-08 0 0.825 0 1.83333V31.1667C0 32.175 0.830769 33 1.84615 33H7.38462C8.4 33 9.23077 32.175 9.23077 31.1667V1.83333C9.23077 0.825 8.4 3.84649e-08 7.38462 3.84649e-08Z" FillRule="NonZero"/>
+                    </Path.Data>
+                    <Path.RenderTransform>
+                        <ScaleTransform ScaleX="2" ScaleY="2"/>
+                    </Path.RenderTransform>
+                </Path>
+                <Path Name="path34" Fill="#FF3B3751">
+                    <Path.Data>
+                        <PathGeometry Figures="M7.38462 3.84649e-08H1.84615C0.830769 3.84649e-08 0 0.825 0 1.83333V31.1667C0 32.175 0.830769 33 1.84615 33H7.38462C8.4 33 9.23077 32.175 9.23077 31.1667V1.83333C9.23077 0.825 8.4 3.84649e-08 7.38462 3.84649e-08Z" FillRule="NonZero"/>
+                    </Path.Data>
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            <TranslateTransform X="29.5385"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Canvas>
+        </Viewbox>
+    </Border>
+
+    <Border x:Key="ImageLoop" BorderThickness="0" Background="Transparent">
+        <Viewbox Stretch="Uniform">
+            <Canvas Name="svg3817" Width="36" Height="40">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0"/>
+                </Canvas.RenderTransform>
+                <Canvas.Resources/>
+                <Path Name="path3813" Fill="#FF3B3751">
+                    <Path.Data>
+                        <PathGeometry Figures="M5.10083 6.66667L3.19 4.75583H13.6783V9.75583H15.345V4.75583C15.345 3.83667 14.5983 3.08917 13.6783 3.08917H3.19L5.10083 1.17833L3.9225 1.05302e-08L-2.86102e-08 3.9225L3.9225 7.845L5.10083 6.66667Z" FillRule="NonZero"/>
+                    </Path.Data>
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            <TranslateTransform X="0.643311" Y="0.488331"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path Name="path3815" Fill="#FF3B3751">
+                    <Path.Data>
+                        <PathGeometry Figures="M11.4225 1.91083L10.2442 3.08917L12.155 5H1.66667V0H0V5C0 5.92 0.7475 6.66667 1.66667 6.66667H12.155L10.2442 8.5775L11.4225 9.75583L15.345 5.83333L11.4225 1.91083Z" FillRule="NonZero"/>
+                    </Path.Data>
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            <TranslateTransform X="4.66669" Y="20"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Canvas>
+        </Viewbox>
+    </Border>
+
+    <Border x:Key="ImageFullScreen" BorderThickness="0" Background="Transparent">
+        <Viewbox Stretch="Uniform">
+            <Canvas Name="svg3793" Width="36" Height="36">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0"/>
+                </Canvas.RenderTransform>
+                <Canvas.Resources/>
+                <Path Name="path3783" Fill="#FF3B3751">
+                    <Path.Data>
+                        <PathGeometry Figures="M0.490972 1.38924H2.28681L-5.08626e-07 3.67661L0.981945 4.6588L3.26875 2.37143V4.16771H4.65764V0H0.490972V1.38924Z" FillRule="NonZero"/>
+                    </Path.Data>
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            <TranslateTransform X="25.3514" Y="1.3242"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path Name="path3785" Fill="#FF3B3751">
+                    <Path.Data>
+                        <PathGeometry Figures="M3.67569 -1.27188e-07L1.38889 2.28738V0.491095H0V4.6588H4.16667V3.26957H2.37083L4.65764 0.982189L3.67569 -1.27188e-07Z" FillRule="NonZero"/>
+                    </Path.Data>
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            <TranslateTransform X="1.33334" Y="25.3483"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path Name="path3787" Fill="#FF3B3751">
+                    <Path.Data>
+                        <PathGeometry Figures="M4.16667 1.38924V0H0V4.16771H1.38889V2.37143L3.67569 4.6588L4.65764 3.67661L2.37083 1.38924H4.16667Z" FillRule="NonZero"/>
+                    </Path.Data>
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            <TranslateTransform X="1.33334" Y="1.3242"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path Name="path3789" Fill="#FF3B3751">
+                    <Path.Data>
+                        <PathGeometry Figures="M3.26875 2.28738L0.981945 -1.27188e-07L-5.08626e-07 0.982189L2.28681 3.26957H0.490972V4.6588H4.65764V0.491095H3.26875V2.28738Z" FillRule="NonZero"/>
+                    </Path.Data>
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            <TranslateTransform X="25.3514" Y="25.3483"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path Name="path3791" Fill="#FF3B3751">
+                    <Path.Data>
+                        <PathGeometry Figures="M5.55556 5.03454e-08H1.38889C0.622917 5.03454e-08 0 0.623072 0 1.38924V5.55694C0 6.3238 0.622917 6.94618 1.38889 6.94618H5.55556C6.32222 6.94618 6.94444 6.3238 6.94444 5.55694V1.38924C6.94444 0.623072 6.32222 5.03454e-08 5.55556 5.03454e-08Z" FillRule="NonZero"/>
+                    </Path.Data>
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            <TranslateTransform X="11.0555" Y="11.0488"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Canvas>
+        </Viewbox>
+    </Border>
+
+    <Border x:Key="ImageOpen" BorderThickness="0" Background="Transparent">
+        <Viewbox Stretch="Uniform">
+            <Canvas Name="svg26" Width="36" Height="36">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0"/>
+                </Canvas.RenderTransform>
+                <Canvas.Resources/>
+                <Path Name="path22" Fill="#FF3B3751">
+                    <Path.Data>
+                        <PathGeometry Figures="M0.623333 6.00865L5.2 3.39281C5.33 3.31865 5.41 3.18115 5.41 3.03115C5.41 2.88115 5.33 2.74448 5.2 2.66948L0.623333 0.0553127C0.494167 -0.0188539 0.335833 -0.0180206 0.2075 0.0553127C0.0791663 0.130313 0 0.267813 0 0.416979V5.64781C0 5.79615 0.0791663 5.93365 0.2075 6.00865C0.335833 6.08198 0.494167 6.08281 0.623333 6.00865Z" FillRule="NonZero"/>
+                    </Path.Data>
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            <TranslateTransform X="13" Y="11.941"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path Name="path24" Fill="#FF3B3751">
+                    <Path.Data>
+                        <PathGeometry Figures="M14.1667 9.53674e-08V1.665H2.5V9.53674e-08H0V16.6667H2.5V14.9983H14.1667V16.6667H16.6667V9.53674e-08H14.1667ZM2.5 12.4983V4.165H14.1667V12.4983H2.5Z" FillRule="NonZero"/>
+                    </Path.Data>
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            <TranslateTransform X="1.33334" Y="1.34167"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Canvas>
+        </Viewbox>
+    </Border>
+
+    <Border x:Key="ImageSettings" BorderThickness="0" Background="Transparent">
+        <Viewbox Stretch="Uniform">
+            <Canvas Name="svg46" Width="36" Height="36">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0"/>
+                </Canvas.RenderTransform>
+                <Canvas.Resources/>
+                <Path Name="path44" Fill="#FF3B3751">
+                    <Path.Data>
+                        <PathGeometry Figures="M16.6667 10V6.66667H14.78C14.5867 5.91583 14.2708 5.21417 13.845 4.58917L15.11 3.32417L13.3425 1.55667L12.0775 2.82167C11.4533 2.39583 10.7508 2.08167 10 1.88583V0H6.66667V1.88583C5.91583 2.08167 5.21333 2.39583 4.58917 2.82083L3.32417 1.55667L1.55667 3.32417L2.82167 4.58917C2.39583 5.21333 2.08 5.915 1.88667 6.66667H0V10H1.88667C2.08 10.7525 2.39583 11.4533 2.82167 12.0775L1.55667 13.3425L3.32417 15.1108L4.58917 13.8458C5.21333 14.2708 5.91583 14.5858 6.66667 14.7808V16.6667H10V14.7808C10.7508 14.5867 11.4533 14.2708 12.0775 13.8458L13.3425 15.1108L15.11 13.3425L13.845 12.0775C14.2708 11.4533 14.5867 10.7525 14.78 10H16.6667ZM8.33333 13.3333C5.57583 13.3333 3.33333 11.0917 3.33333 8.33333C3.33333 5.57583 5.57583 3.33333 8.33333 3.33333C11.0908 3.33333 13.3333 5.57583 13.3333 8.33333C13.3333 11.0908 11.0908 13.3333 8.33333 13.3333Z" FillRule="NonZero"/>
+                    </Path.Data>
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            <TranslateTransform X="1.33333" Y="1.33334"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Canvas>
+        </Viewbox>
+    </Border>
+
+    <!-- Styles -->
+    <Style x:Key="TextButton" TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="#CFCFCF"/>
+        <Setter Property="Foreground" Value="#333333"/>
+    </Style>
+
+    <Style x:Key="SmallImageButton" TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Margin" Value="11, 0"/>
+    </Style>
+    <Style x:Key="SmallImageToggleButton" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Margin" Value="11, 0"/>
+    </Style>
+    <Style x:Key="BigImageToggleButton" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Width" Value="36"/>
+        <Setter Property="Height" Value="36"/>
+        <Setter Property="Margin" Value="14, 0"/>
+    </Style>
+
+    <Style x:Key="ButtonVolume" TargetType="ToggleButton" BasedOn="{StaticResource SmallImageToggleButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Opacity" Value="0.8"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <DynamicResource ResourceKey="ImageMute" />
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="ToolTip" Value="Unmute"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ToolTip" Value="Mute"/>
+        <Setter Property="Content">
+            <Setter.Value>
+                <DynamicResource ResourceKey="ImageVolume" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ButtonSelection" TargetType="ToggleButton" BasedOn="{StaticResource SmallImageToggleButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Opacity" Value="0.8"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Opacity" Value="0.4"/>
+                            <Setter Property="ToolTip" Value="Playing entire video"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ToolTip" Value="Playing current segment"/>
+        <Setter Property="Content">
+            <Setter.Value>
+                <DynamicResource ResourceKey="ImageSelection" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ButtonPlay" TargetType="ToggleButton" BasedOn="{StaticResource BigImageToggleButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Opacity" Value="0.8"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <DynamicResource ResourceKey="ImagePause" />
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Margin" Value="12, 0, 16, 0"/>
+                            <Setter Property="ToolTip" Value="Pause"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.2"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ToolTip" Value="Play"/>
+        <Setter Property="Content">
+            <Setter.Value>
+                <DynamicResource ResourceKey="ImagePlay" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ButtonLoop" TargetType="ToggleButton" BasedOn="{StaticResource SmallImageToggleButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Opacity" Value="0.8"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Opacity" Value="0.4"/>
+                            <Setter Property="ToolTip" Value="No looping"/>
+                        </Trigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True"/>
+                                <Condition Binding="{Binding VideoViewModel.LoopNumber}" Value="0"/>
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter Property="ToolTip" Value="Looping forever" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ToolTip">
+            <Setter.Value>
+                <TextBlock Text="{Binding VideoViewModel.LoopNumber, StringFormat={}Looping {0} time(s)}"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Content">
+            <Setter.Value>
+                <DynamicResource ResourceKey="ImageLoop" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ButtonFullScreen" TargetType="ToggleButton" BasedOn="{StaticResource SmallImageToggleButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Opacity" Value="0.8"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ToolTip" Value="Full screen"/>
+        <Setter Property="Content">
+            <Setter.Value>
+                <DynamicResource ResourceKey="ImageFullScreen" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ButtonOpen" TargetType="Button" BasedOn="{StaticResource SmallImageButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Opacity" Value="0.8"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.2"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ToolTip" Value="Open video"/>
+        <Setter Property="Content">
+            <Setter.Value>
+                <DynamicResource ResourceKey="ImageOpen" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ButtonSettings" TargetType="Button" BasedOn="{StaticResource SmallImageButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Opacity" Value="0.8"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ToolTip" Value="Settings"/>
+        <Setter Property="Content">
+            <Setter.Value>
+                <DynamicResource ResourceKey="ImageSettings" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Slider related styles -->
+    <!-- Slider left part -->
+    <Style x:Key="SliderRepeatButtonLeft" TargetType="RepeatButton">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Border Background="#E4E4E6" Height="4"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Slider right part -->
+    <Style x:Key="SliderRepeatButtonRight" TargetType="RepeatButton">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Border SnapsToDevicePixels="True" Background="#14C97B" Height="4"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Video slider thumb button -->
+    <Style x:Key="VideoSliderThumb" TargetType="Thumb">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Thumb">
+                    <Ellipse Height="12" Width="12" Fill="#14C97B">
+                        <Ellipse.BitmapEffect>
+                            <DropShadowBitmapEffect Color="#3B3751" Direction="0" ShadowDepth="4" Softness="1" Opacity="0.25"/>
+                        </Ellipse.BitmapEffect>
+                    </Ellipse>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Video slider template -->
+    <ControlTemplate x:Key="VideoSliderTemplate" TargetType="Slider">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Track Grid.Row="1" x:Name="PART_Track">
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource SliderRepeatButtonRight}" Command="Slider.DecreaseLarge" />
+                </Track.DecreaseRepeatButton>
+                <Track.Thumb>
+                    <Thumb Style="{StaticResource VideoSliderThumb}" />
+                </Track.Thumb>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource SliderRepeatButtonLeft}" Command="Slider.IncreaseLarge" />
+                </Track.IncreaseRepeatButton>
+            </Track>
+        </Grid>
+    </ControlTemplate>
+
+    <!-- Video slider style -->
+    <Style x:Key="VideoSlider" TargetType="Slider">
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="IsMoveToPointEnabled" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="MinHeight" Value="21" />
+                <Setter Property="Template" Value="{StaticResource VideoSliderTemplate}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Volume slider thumb button -->
+    <Style x:Key="VolumeSliderThumb" TargetType="Thumb">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Thumb"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!-- Volume slider template -->
+    <ControlTemplate x:Key="VolumeSliderTemplate" TargetType="Slider">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Track Grid.Row="1" x:Name="PART_Track">
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource SliderRepeatButtonRight}" Command="Slider.DecreaseLarge" />
+                </Track.DecreaseRepeatButton>
+                <Track.Thumb>
+                    <Thumb Style="{StaticResource VolumeSliderThumb}" />
+                </Track.Thumb>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource SliderRepeatButtonLeft}" Command="Slider.IncreaseLarge" />
+                </Track.IncreaseRepeatButton>
+            </Track>
+        </Grid>
+    </ControlTemplate>
+
+    <!-- Volume slider style -->
+    <Style x:Key="VolumeSlider" TargetType="Slider">
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="IsMoveToPointEnabled" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="MinHeight" Value="21" />
+                <Setter Property="Template" Value="{StaticResource VolumeSliderTemplate}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Converters -->
+    <BooleanToVisibilityConverter x:Key="VisibilityOfBoolean" />
+    <local:InverseBooleanToVisibilityConverter x:Key="InverseVisibilityOfBoolean" />
+    <local:MultiVisibilityToVisibilityConverter x:Key="VisibilityOfMultipleVisibilities" />
+</ResourceDictionary>

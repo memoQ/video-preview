@@ -48,6 +48,7 @@ namespace MemoQ.VideoPreview
         private const string Tag_Maximized = "Maximized";
         private const string Tag_AlwaysOnTop = "AlwaysOnTop";
         private const string Tag_VlcLibPath = "VlcLibrariesPath";
+        private const string Tag_DoNotAskAgain = "DoNotAskAgain";
 
         private readonly string SettingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Application.ProductName, "settings.xml");
 
@@ -68,6 +69,11 @@ namespace MemoQ.VideoPreview
         public bool WindowMaximized { get; set; }
         public bool AlwaysOnTop { get; set; }
         public string VlcLibPath { get; set; }
+        /// <summary>
+        /// If this is true the missing font window will not appear. 
+        /// By default it is flase. It will change to true only if the user pushed "Do not ask again" button. 
+        /// </summary>
+        public bool FontMissingWindowDoNotAskAgain { get; set; }
 
         public void ResetSettings()
         {
@@ -90,7 +96,9 @@ namespace MemoQ.VideoPreview
             var currentAssembly = Assembly.GetEntryAssembly();
             var currentDirectory = new FileInfo(currentAssembly.Location).DirectoryName;
             if (currentDirectory != null)
+                // Default installation path of VideoLAN.LibVLC.Windows
                 VlcLibPath = Path.Combine(currentDirectory, "libvlc");
+            FontMissingWindowDoNotAskAgain = false;
         }
 
         public void LoadSettings()
@@ -130,6 +138,10 @@ namespace MemoQ.VideoPreview
                 WindowMaximized = bool.Parse(xWindows.Element(Tag_Maximized).Value);
                 AlwaysOnTop = bool.Parse(xWindows.Element(Tag_AlwaysOnTop).Value);
                 VlcLibPath = root.Element(Tag_VlcLibPath).Value;
+
+                FontMissingWindowDoNotAskAgain = false;
+                if (root.Element(Tag_DoNotAskAgain) != null)
+                    FontMissingWindowDoNotAskAgain = Boolean.Parse(root.Element(Tag_DoNotAskAgain).Value);
             }
             catch (IOException)
             {
@@ -172,7 +184,8 @@ namespace MemoQ.VideoPreview
                         new XElement(Tag_Height, WindowHeight.ToString()),
                         new XElement(Tag_Maximized, WindowMaximized.ToString()),
                         new XElement(Tag_AlwaysOnTop, AlwaysOnTop.ToString())),
-                    new XElement(Tag_VlcLibPath, VlcLibPath))
+                    new XElement(Tag_VlcLibPath, VlcLibPath),
+                    new XElement(Tag_DoNotAskAgain, FontMissingWindowDoNotAskAgain.ToString()))
             ).Save(SettingsPath);
         }
     }

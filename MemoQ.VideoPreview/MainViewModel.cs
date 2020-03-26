@@ -75,7 +75,7 @@ namespace MemoQ.VideoPreview
             }
             catch (PreviewServiceUnavailableException)
             {
-                Log.Instance.WriteMessage(Log.PreviewUnavailableMessage, SeverityOption.Info);
+                Log.Instance.WriteMessage(Log.PreviewUnavailableMessage, SeverityOption.Warning);
             }
             catch (NotSupportedException)
             {

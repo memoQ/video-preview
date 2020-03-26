@@ -5,6 +5,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing.Text;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -89,6 +90,8 @@ namespace MemoQ.VideoPreview
         /// </summary>
         private bool isVideoSliderChangedByHand;
 
+        private bool startTimeOutOfVideoBounds = false;
+
         public MainWindow()
         {
             mainViewModel = new MainViewModel(this as IPreviewToolCallback, stopVideo);
@@ -116,7 +119,7 @@ namespace MemoQ.VideoPreview
             Topmost = Settings.Instance.AlwaysOnTop;
             logWindow.Topmost = Settings.Instance.AlwaysOnTop;
             BorderBrush = SystemParameters.WindowGlassBrush;
-            
+
             openControl.SetPlayAction((doc) => playBrowsedVideo(doc));
             connectControl.SetLogWindow(logWindow);
             Log.Instance.MessageAdded += Log_MessageAdded;
@@ -130,10 +133,62 @@ namespace MemoQ.VideoPreview
             myVlcControl.MediaPlayer.EncounteredError += myVlcControl_EncounteredError;
         }
 
+        private static void ensureArialMSFontInstalledOrIgnored()
+        {
+            // check if Arial Unicode MS is installed or not
+            string fontName = "Arial Unicode MS";
+            bool isInstalled = false;
+
+            var fontsCollection = new InstalledFontCollection();
+            foreach (var fontFamily in fontsCollection.Families)
+            {
+                if (fontFamily.Name == fontName)
+                {
+                    isInstalled = true;
+                }
+            }
+
+            // check if the client already clicked to "do not ask again" button
+            bool dontAskAgainIsTrue = Settings.Instance.FontMissingWindowDoNotAskAgain;
+
+            // show missing font form 
+            if (!isInstalled && !dontAskAgainIsTrue)
+            {
+                MissingFontDialogViewModel vm = new MissingFontDialogViewModel();
+                MissingFontDialogView iqf = new MissingFontDialogView(vm);
+                iqf.Owner = Application.Current.MainWindow;
+                iqf.ShowDialog();
+
+                if (vm.InstallFont)
+                {
+                    string path = Path.GetTempPath();
+                    string fileName = Path.Combine(path, "arial-unicode-ms.ttf");
+                    if (File.Exists(fileName))
+                    {
+                        File.Delete(fileName);
+                    }
+                    using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MemoQ.VideoPreview.Fonts.arial-unicode-ms.ttf"))
+                    using (Stream writer = new FileStream(fileName, FileMode.Create))
+                        stream.CopyTo(writer);
+
+                    Process.Start(fileName).WaitForExit();
+                    File.Delete(fileName);
+                }
+
+                if (vm.IgnorePermamently)
+                {
+                    Settings.Instance.FontMissingWindowDoNotAskAgain = true;
+                    Settings.Instance.SaveSettings();
+                }
+            }
+        }
+
         #region Window events
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            ensureArialMSFontInstalledOrIgnored();
+
             if (Settings.Instance.AutoConnect)
                 mainViewModel.Connect();
         }
@@ -211,11 +266,11 @@ namespace MemoQ.VideoPreview
                     if (!string.IsNullOrEmpty(previewIdParts[1]))
                         start = TimeSpan.Parse(previewIdParts[1], CultureInfo.InvariantCulture).Ticks / TimeSpan.TicksPerMillisecond;
                     else
-                        Log.Instance.WriteMessage("Start time was given probably not in the right format (hh:mm:ss.fff).", SeverityOption.Info);
+                        Log.Instance.WriteMessage("Start time was given probably not in the right format (hh:mm:ss.fff).", SeverityOption.Warning);
                     if (!string.IsNullOrEmpty(previewIdParts[1]))
                         end = TimeSpan.Parse(previewIdParts[2], CultureInfo.InvariantCulture).Ticks / TimeSpan.TicksPerMillisecond;
                     else
-                        Log.Instance.WriteMessage("End time was given probably not in the right format (hh:mm:ss.fff).", SeverityOption.Info);
+                        Log.Instance.WriteMessage("End time was given probably not in the right format (hh:mm:ss.fff).", SeverityOption.Warning);
 
                     var docGuid = previewPart.SourceDocument.DocumentGuid;
 
@@ -298,11 +353,11 @@ namespace MemoQ.VideoPreview
                     if (!string.IsNullOrEmpty(previewIdParts[1]))
                         start = TimeSpan.Parse(previewIdParts[1], CultureInfo.InvariantCulture).Ticks / TimeSpan.TicksPerMillisecond;
                     else
-                        Log.Instance.WriteMessage("Start time was given probably not in the right format (hh:mm:ss.fff).", SeverityOption.Info);
+                        Log.Instance.WriteMessage("Start time was given probably not in the right format (hh:mm:ss.fff).", SeverityOption.Warning);
                     if (!string.IsNullOrEmpty(previewIdParts[1]))
                         end = TimeSpan.Parse(previewIdParts[2], CultureInfo.InvariantCulture).Ticks / TimeSpan.TicksPerMillisecond;
                     else
-                        Log.Instance.WriteMessage("End time was given probably not in the right format (hh:mm:ss.fff).", SeverityOption.Info);
+                        Log.Instance.WriteMessage("End time was given probably not in the right format (hh:mm:ss.fff).", SeverityOption.Warning);
 
                     if (isFirstPreviewPart)
                     {
@@ -406,7 +461,7 @@ namespace MemoQ.VideoPreview
                     Math.Min(segmentPartsToLoop.Last().Subtitle.End + Settings.Instance.TimePaddingForLoop, myVlcControl.MediaPlayer.Length - endOffsetInMs) :
                     myVlcControl.MediaPlayer.Length - endOffsetInMs;
 
-                if (e.NewTime >= loopEnd)
+                if (e.NewTime >= loopEnd && !startTimeOutOfVideoBounds)
                 {
                     if (Settings.Instance.LoopSelection && (Settings.Instance.LoopNumber == 0 || currentLoopNumber < Settings.Instance.LoopNumber))
                     {
@@ -714,7 +769,9 @@ namespace MemoQ.VideoPreview
                     if (currentMedia != null && Path.GetFileName(media) == Path.GetFileName(currentMedia.Title))
                     {
                         // move the video almost to the end and pause
+                        startTimeOutOfVideoBounds = true;
                         myVlcControl.MediaPlayer.Time = myVlcControl.MediaPlayer.Length - startOffsetInMs;
+                        startTimeOutOfVideoBounds = false;
                         if (mainViewModel.VideoViewModel.IsPlaying)
                         {
                             mainViewModel.VideoViewModel.IsPlaying = false;

@@ -1,0 +1,47 @@
+﻿<Window x:Class="MemoQ.VideoPreview.MissingFontDialogView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Missing font" Height="260" Width="574"
+        FontFamily="Segoe UI" FontSize="14" TextElement.Foreground="#333333" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner">
+    <!-- Resources. -->
+    <Window.Resources>
+        <ResourceDictionary>
+            <!-- Included dictionaries. -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid Margin="0, 20, 20, 20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Image Grid.Column="0" Grid.Row="0" Source="../Images/Warning.png" Stretch="Uniform"/>
+            <TextBlock Grid.Column="1" Grid.Row="0" FontSize="20" VerticalAlignment="Center" 
+                   Text="Missing font"/>
+            <TextBlock Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Margin="0, 0, 40, 0"
+                   Text="The font 'Arial Unicode MS' is not installed. This can cause problems with displaying non-Latin characters. Do you want to install it now?"/>
+            <CheckBox Grid.Column="1" Grid.Row="2" Content="Do not ask again" VerticalAlignment="Center" Checked="DoNotAskAgainCheckBoxChecked" Unchecked="DoNotAskAgainCheckBoxUnchecked" />
+            <DockPanel Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom">
+                <Button DockPanel.Dock="Right" Name="buttonNo" Content="No" 
+                        Click="buttonNoClicked" Margin="10, 0, 0, 0" HorizontalAlignment="Right" 
+                        Style="{StaticResource TextButton}"/>
+                <Button DockPanel.Dock="Right" Name="buttonYes" Content="Yes" 
+                        Click="buttonYesClicked" Margin="10, 0, 0, 0" HorizontalAlignment="Right"
+                        Style="{StaticResource TextButton}"/>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</Window>

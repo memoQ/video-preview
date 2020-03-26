@@ -56,7 +56,7 @@ namespace MemoQ.VideoPreview
 
         private void btnHelp_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://help.memoq.com/8-5/en/memoQ-video-preview-tool/settings.html");
+            Process.Start("https://help.memoq.com/current/en/memoQ-video-preview-tool/mvpt-settings.html");
             e.Handled = true;
         }
 

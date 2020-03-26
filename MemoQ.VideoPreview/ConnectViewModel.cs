@@ -97,7 +97,7 @@ namespace MemoQ.VideoPreview
                 catch (PreviewServiceUnavailableException)
                 {
                     IsConnected = false;
-                    Log.Instance.WriteMessage(Log.PreviewUnavailableMessage, SeverityOption.Info);
+                    Log.Instance.WriteMessage(Log.PreviewUnavailableMessage, SeverityOption.Warning);
                 }
                 catch (NotSupportedException)
                 {
@@ -136,6 +136,8 @@ namespace MemoQ.VideoPreview
 
             var requestStatus = await CallProxyMethod(new Func<RequestStatus>(() => PreviewServiceProxy?.Register(request)));
             IsConnected = (requestStatus != null && requestStatus.RequestAccepted);
+            if (!IsConnected)
+                Log.Instance.WriteMessage($"Could not register this preview tool in memoQ. Check if memoQ allows connecting external preview tools, and memoQ video preview tool is enabled under \"Installed external preview tools\".", SeverityOption.Warning);
         }
 
         public async void Connect()
@@ -215,11 +217,15 @@ namespace MemoQ.VideoPreview
             catch (PreviewServiceUnavailableException)
             {
                 IsConnected = false;
-                Log.Instance.WriteMessage(Log.PreviewUnavailableMessage, SeverityOption.Info);
+                Log.Instance.WriteMessage(Log.PreviewUnavailableMessage, SeverityOption.Warning);
             }
             catch (PreviewToolAlreadyConnectedException)
             {
                 return RequestStatus.Success();
+            }
+            catch (System.IO.IOException e)
+            {
+                Log.Instance.WriteMessage($"Error to connect: {e.Message}", SeverityOption.Error);
             }
             catch (Exception ex)
             {

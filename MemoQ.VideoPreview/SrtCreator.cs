@@ -53,7 +53,7 @@ namespace MemoQ.VideoPreview
             if (!text.HasFormatting)
                 return text.Text;
 
-            return stickWhitespacesToText(handleOverlappedFormattingTags(text.Text));
+            return handleOverlappedFormattingTags(text.Text);
         }
 
         /// <summary>
@@ -106,57 +106,6 @@ namespace MemoQ.VideoPreview
                 index = match.Index + insertedCharsBefore + match.Length + insertedCharsAfter;
             }
             return text;
-        }
-
-        /// <summary>
-        /// Helper method to fix whitespace issues 
-        /// (unfortunately VLC control cannot show spaces in some cases, so we have to stick them to texts)
-        /// </summary>
-        private static string stickWhitespacesToText(string text)
-        {
-            string onlyWhitespaceTagsCleared = text;
-            int index = 0;
-            while (index < onlyWhitespaceTagsCleared.Length)
-            {
-                var onlyWhitespaceMatch = onlyWhitespaceTagsRegex.Match(onlyWhitespaceTagsCleared, index);
-                if (!onlyWhitespaceMatch.Success)
-                    break;
-
-                // collect the opening tags
-                var openingTagMatches = tagRegex.Matches(onlyWhitespaceMatch.Groups["openingTags"].Value);
-                var openingTags = new List<string>();
-                foreach (Match openingTagMatch in openingTagMatches)
-                {
-                    openingTags.Add(openingTagMatch.Groups["tagName"].Value);
-                }
-
-                // see whether every opening tag was closed and only them
-                var closingTagMatches = tagRegex.Matches(onlyWhitespaceMatch.Groups["closingTags"].Value);
-                bool closeTagWasNotOpened = false;
-                foreach (Match closingTagMatch in closingTagMatches)
-                {
-                    if (!openingTags.Remove(closingTagMatch.Groups["tagName"].Value))
-                    {
-                        closeTagWasNotOpened = true;
-                        break;
-                    }
-                }
-
-                // if only whitespaces were inside tags, move them after the tags, or drop the open-close tags if they are in sync
-                if (closeTagWasNotOpened || openingTags.Any())
-                {
-                    onlyWhitespaceTagsCleared = onlyWhitespaceTagsRegex.Replace(onlyWhitespaceTagsCleared, "${openingTags}${closingTags}${whitespaces}", 1, onlyWhitespaceMatch.Index);
-                    index = onlyWhitespaceMatch.Index + onlyWhitespaceMatch.Length;
-                }
-                else
-                {
-                    onlyWhitespaceTagsCleared = onlyWhitespaceTagsRegex.Replace(onlyWhitespaceTagsCleared, "${whitespaces}", 1, onlyWhitespaceMatch.Index);
-                    index = onlyWhitespaceMatch.Index + onlyWhitespaceMatch.Groups["whitespaces"].Length;
-                }
-            }
-
-            // if only whitespaces were between tags, move them before the tags
-            return whitespaceOutsideTagsRegex.Replace(onlyWhitespaceTagsCleared, "${whitespaces}${closingTags}${openingTags}");
         }
     }
 }

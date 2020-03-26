@@ -15,19 +15,14 @@ namespace MemoQ.VideoPreview
             End = end;
             Text = text ?? throw new ArgumentNullException(nameof(text));
             HasFormatting = Regex.IsMatch(text, formattingTagPattern);
-            PlainText = HasFormatting ? getPlainText(text) : text;
         }
 
         public long Start { get; }
         public long End { get; }
         public string Text { get; }
-        public string PlainText { get; }
         public bool HasFormatting { get; }
 
-        private string getPlainText(string text)
-        {
-            return Regex.Replace(text, formattingTagPattern, "");
-        }
+        public string PlainText => HasFormatting ? Regex.Replace(Text, formattingTagPattern, "") : Text;
 
         /// <summary>
         /// Used to produce a friendly display in the debugger.

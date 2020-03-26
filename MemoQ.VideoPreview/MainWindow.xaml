@@ -7,7 +7,7 @@
         xmlns:vlc="clr-namespace:Vlc.DotNet.Wpf;assembly=Vlc.DotNet.Wpf"
         mc:Ignorable="d"
         Title="memoQ Video Preview Tool" Height="520" Width="654" MinWidth="506" MinHeight="404"
-        Icon="VideoPreviewTool.ico" Closing="Window_Closing" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged">
+        Icon="VideoPreviewToolIcon.ico" Closing="Window_Closing" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged">
     <!-- Resources. -->
     <Window.Resources>
         <ResourceDictionary>
